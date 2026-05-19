@@ -9,3 +9,11 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
+
+# Journal club — keep local only
+CLAUDE.md
+scripts/
+staging/
+.claude/
+.env
+*.env
