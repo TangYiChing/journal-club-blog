@@ -1,8 +1,8 @@
 ---
-title: "Issue 2: May 2026 — Computational Methods"
+title: "Issue 1: May 2026 — Computational Methods"
 date: 2026-05-19
 period: "2026-05-05 to 2026-05-19"
-issue_number: 2
+issue_number: 1
 tags: [antibody, protein-degradation, computational, experimental-validation, ml-clinical]
 ---
 
@@ -31,7 +31,7 @@ If you are building a multi-property predictor, read CA-MAP before choosing an a
 **Authors**: Wan et al.
 **Track**: Computational Methods
 
-The authors demonstrate a high-throughput 'deep loop profiling' approach that quantifies folding fitness across millions of CDR variants in single-domain antibodies (nanobodies). Machine learning models trained on this dataset predict folding propensity directly from sequence and identify CDR1 and CDR2 — not CDR3 — as the dominant folding determinants. What the data supports: the authors rescue two unstable nanobodies (a SARS-CoV-2 binder and a GPCR-targeting intrabody) using rules derived from the ML model, providing experimental validation that the sequence-stability predictions translate to real engineered molecules. What the data does NOT support or leaves open: the study is restricted to single-domain antibodies (nanobodies/VHH); whether CDR1/CDR2 hold the same primacy in conventional VH-VL paired antibodies is untested. The model is trained on folding fitness, not binding affinity — a molecule predicted to fold well may still be a poor binder.
+The authors demonstrate a high-throughput 'deep loop profiling' approach that quantifies folding fitness across millions of CDR variants in single-domain antibodies (nanobodies). Machine learning models trained on this dataset predict folding propensity directly from sequence and identify CDR1 and CDR2 — not CDR3 — as the dominant folding determinants. What the data supports: the authors rescue two unstable nanobodies (a SARS-CoV-2 binder and a GPCR-targeting intrabody) using rules derived from the ML model, providing experimental validation that the sequence-stability predictions translate to real engineered molecules. What the data does NOT support or leaves open: the study is restricted to single-domain antibodies (nanobodies/VHH); whether CDR1/CDR2 hold the same primacy in conventional VH-VL paired antibodies is untested. The model is also trained on folding fitness, not binding affinity — a molecule predicted to fold well may still be a poor binder.
 
 **Verdict**: Deep loop profiling establishes CDR1 and CDR2 as the key folding determinants in nanobodies and delivers interpretable ML rules that rescue unstable candidates, but generalization to conventional IgG scaffolds requires separate validation.
 
@@ -118,29 +118,29 @@ The authors curate a standardized dataset of in vitro immunogenicity assay reado
 
 ---
 
-## Aristotle Discussion
+## Panel Discussion
 
-**Panel**: Dr. Yael Mandel-Gutfreund, protein bioinformatician & evolutionary genomicist · Dr. James Zou, ML engineer specializing in biological foundation models · Dr. Alicia Fernández-Tejada, medicinal & chemical biologist focused on antibody therapeutics
+**Panel**: Domain Expert A (Bioinformatics & Evolutionary Genomics) · Domain Expert B (ML / Biological Foundation Models) · Domain Expert C (Medicinal & Chemical Biology)
 
-**Dr. Mandel-Gutfreund**: Harel et al. show that germline scaffold positions are epistatically entrenched — so sequence models trained on human repertoires will systematically undervalue mutations at those positions. How many of the ML models in this issue are implicitly penalizing the right moves?
+**Domain Expert A**: Harel et al. show that germline scaffold positions are epistatically entrenched — so sequence models trained on human repertoires will systematically undervalue mutations at those positions. How many of the ML models in this issue are implicitly penalizing the right moves?
 
-**Dr. Zou**: CA-MAP and MoE-AbLM both claim to handle multi-property or diverse-region learning through architectural innovations. But neither was tested on a dataset where experimental labels are paired with known epistatic interactions. How do we know whether improved benchmark performance reflects genuine biological understanding or more sophisticated pattern-matching on biased training data?
+**Domain Expert B**: CA-MAP and MoE-AbLM both claim to handle multi-property or diverse-region learning through architectural innovations. But neither was tested on a dataset where experimental labels are paired with known epistatic interactions. How do we know whether improved benchmark performance reflects genuine biological understanding or more sophisticated pattern-matching on biased training data?
 
-**Dr. Fernández-Tejada**: BOAT and intDesc-AbMut both accept existing in silico oracles as given and optimize around them. But if those oracles disagree with each other on what makes a good antibody — and they often do — what does it mean to orchestrate them jointly? Is the practitioner being asked to resolve a scientific question through hyperparameter tuning?
+**Domain Expert C**: BOAT and intDesc-AbMut both accept existing in silico oracles as given and optimize around them. But if those oracles disagree with each other on what makes a good antibody — and they often do — what does it mean to orchestrate them jointly? Is the practitioner being asked to resolve a scientific question through hyperparameter tuning?
 
 **Convergence**
 
 The seven papers in this corpus share a foundational tension that none of them resolves directly: the gap between sequence-level learning and structural-level causality. This tension appears in at least three forms.
 
-First, there is the germline bias problem. Burbach et al. (MoE-AbLM) attack it architecturally, arguing that token-choice MoE routing spontaneously specializes on CDR-H3. But Harel et al. reveal a deeper problem: the epistatic constraints shaping what mutations are tolerated at CDR borders are encoded in framework positions, not CDR positions. A model that gets better at CDR-H3 representations without modeling framework-CDR epistasis may be optimizing the wrong bottleneck. The two papers are not in direct conflict, but they are solving for different definitions of the germline bias problem.
+First, there is the germline bias problem. Burbach et al. (MoE-AbLM) attack it architecturally, arguing that token-choice MoE routing spontaneously specializes on CDR-H3 — the non-templated region most responsible for diversity and most underrepresented in training data. But Harel et al. reveal a deeper problem: the epistatic constraints shaping what mutations are tolerated at CDR borders are encoded in framework positions, not CDR positions. A model that gets better at CDR-H3 representations without modeling framework-CDR epistasis may be optimizing the wrong bottleneck. The two papers are not in direct conflict, but they are solving for different definitions of the germline bias problem — and the field has not yet agreed on which definition matters more for therapeutic design.
 
-Second, there is the label sparsity problem, which three papers independently diagnose and attack differently. AbLWR converts sparse regression labels into ordinal rankings. CA-MAP conditions predictions on assay context via text prompting. Wan et al. sidestep the problem entirely by generating a massive high-throughput dataset. Reading these together reveals an emergent insight: the label sparsity problem may be inseparable from the assay diversity problem. CA-MAP's prompting approach is the only one that treats assay context as a first-class variable rather than a confound to be filtered away.
+Second, there is the label sparsity problem, which three papers independently diagnose and attack differently. AbLWR converts sparse regression labels into ordinal rankings, extracting more signal per data point. CA-MAP conditions predictions on assay context via text prompting, enabling few-shot adaptation without retraining. Wan et al. sidestep the problem entirely by generating a massive high-throughput dataset from scratch using deep loop profiling. Reading these together reveals an emergent insight: the label sparsity problem may be inseparable from the assay diversity problem. Different labs measure different properties on different scales under different conditions. CA-MAP's prompting approach is the only one that treats this as a first-class variable rather than a confound to be filtered away, which may be why it achieves the most practical lab-to-model transfer.
 
-Third, there is the oracle arbitration problem. BOAT and intDesc-AbMut both position the practitioner as the integrator of competing signals from different computational tools. When state-of-the-art oracles disagree on whether a mutation is favorable, there is currently no principled way to resolve the conflict.
+Third, there is what Domain Expert C's question exposes — the oracle arbitration problem. BOAT and intDesc-AbMut both position the practitioner as the integrator of competing signals from different computational tools. This is honest — no single model is yet reliable enough to be trusted in isolation — but it obscures an uncomfortable truth: when state-of-the-art oracles disagree on whether a mutation is favorable, there is currently no principled way to resolve the conflict. The Agnihotri et al. immunogenicity paper faces the same problem at the clinical interface: in vitro readouts correlate with clinical ADA, but the correlation is imperfect, and the paper does not provide a framework for weighting conflicting signals.
 
-The emergent knowledge this corpus generates: the antibody ML field is entering a phase where orchestration is the key bottleneck, not generation or prediction in isolation. BOAT is a first attempt at principled orchestration, but it defers the hardest question — oracle selection and weighting — to the user. The next generation of tools will need to model disagreement between oracles as information, not noise.
+The emergent knowledge this corpus generates is this: the antibody ML field is entering a phase where orchestration is the key bottleneck, not generation or prediction in isolation. We have too many models and too few ways to combine them reliably. BOAT is a first attempt at principled orchestration, but it defers the hardest question — oracle selection and weighting — to the user. The next generation of tools will need to model disagreement between oracles as information, not noise.
 
-Open question: None of the eight papers addresses how to handle inter-lab reproducibility gaps — the case where the same antibody sequence scores differently under the same assay across labs. This is a prerequisite for training any ML model meant to generalize beyond a single institution's data pipeline.
+Open questions this corpus leaves exposed: None of the eight papers addresses how to handle the case where the same antibody sequence scores differently under the same assay across labs — the inter-lab reproducibility gap that Agnihotri et al. acknowledges but does not quantify. This is a prerequisite for training any ML model that is meant to generalize beyond a single institution's data pipeline.
 
 ---
 
