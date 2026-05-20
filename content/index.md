@@ -12,7 +12,6 @@ Accelerating the translation of computational biology into clinical therapeutics
 
 To build cumulative scientific knowledge at the intersection of antibody design and targeted protein degradation by tracking peer-reviewed research every two weeks, applying the DIKW framework to transform papers into structured insights, and facilitating dialectic panel discussions that connect methods, data, and clinical implications across both fields.
 
-**Track · Structure · Connect · Translate**
 
 ### DIKW Framework
 
@@ -38,7 +37,7 @@ Paper synthesis and annotation are powered by **Claude Code** (Anthropic) with t
 
 This journal club is maintained for educational and non-commercial purposes. Paper synthesis and annotation are AI-assisted; all scientific interpretations reflect the author's own reading and are not authoritative clinical guidance.
 
-Inspired by the [CeTPD Journal Club](https://sites.dundee.ac.uk/alessio-ciulli/) (Ciulli Lab, Dundee) and [NaturalAntibody](https://www.linkedin.com/company/naturalantibody/)'s weekly highlights.
+Inspired by the bi-monthly [CeTPD Journal Club](https://sites.dundee.ac.uk/alessio-ciulli/) (Ciulli Lab, Dundee) and [NaturalAntibody](https://www.linkedin.com/company/naturalantibody/)'s weekly highlights.
 
 ---
 
