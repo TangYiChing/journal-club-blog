@@ -1,9 +1,10 @@
 ---
-title: "Issue 1: May 2026 — Computational Methods"
+title: "Issue 1: May 2026 — Antibody Engineering & Design: Computational Methods"
 date: 2026-05-19
 period: "2026-05-05 to 2026-05-19"
 issue_number: 1
-tags: [antibody, protein-degradation, computational, experimental-validation, ml-clinical]
+topic: "antibody"
+tags: [antibody, computational, experimental-validation, ml-clinical]
 ---
 
 ## Field Intelligence Synthesis
