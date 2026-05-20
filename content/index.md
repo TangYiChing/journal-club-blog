@@ -1,8 +1,6 @@
 ---
-title: Journal Club
+title: Computational Biology Journal Club
 ---
-
-# Computational Biology Journal Club
 
 ## Vision
 
