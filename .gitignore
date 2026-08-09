@@ -15,6 +15,9 @@ CLAUDE.md
 scripts/
 staging/
 pipeline/
+knowledge/
+tests/
+protac_ab_problem_framing.md
 .claude/
 .env
 *.env
