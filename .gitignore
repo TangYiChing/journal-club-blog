@@ -14,6 +14,7 @@ replit.nix
 CLAUDE.md
 scripts/
 staging/
+pipeline/
 .claude/
 .env
 *.env
